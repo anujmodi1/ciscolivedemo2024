@@ -2,7 +2,7 @@ import requests
 import json
 url = "https://api.thousandeyes.com/v6/agents.json"
 payload={}
-headers = {'Authorization': 'Bearer ' + "363b554e-6e5c-427c-9406-f08bcc3feb99"}
+headers = {'Authorization': 'Bearer ' + "xxxxx"}
 agent_response = requests.request("GET", url, headers=headers, data=payload)
 print(agent_response)
 
