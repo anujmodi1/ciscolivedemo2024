@@ -5,8 +5,8 @@ url="https://kickstarter.saas.appdynamics.com/controller/rest/applications?outpu
 payload={}
 headers = {
     'Content-Type': 'application/x-www-form-urlencoded',
-    'Authorization': 'Bearer ' + 'xxxx'
-
+    'Authorization': 'Bearer ' + '<token>'
+}
 response = requests.request("GET", url, headers=headers, data=payload)
 
 print(response.text)

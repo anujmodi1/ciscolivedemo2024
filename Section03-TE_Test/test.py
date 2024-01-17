@@ -1,5 +1,7 @@
-import requests
-import json
+import json, re, sys, os, json, subprocess, time, logging, requests, urllib3
+from subprocess import call, check_output
+from requests.structures import CaseInsensitiveDict
+urllib3.disable_warnings()
 url = "https://api.thousandeyes.com/v6/agents.json"
 payload={}
 headers = {'Authorization': 'Bearer ' + "<token>"}
@@ -24,3 +26,10 @@ for item in found_values:
     print(agentId)
     empty_list.append({'agentId': agentId})
 print(empty_list)
+
+test_name = '<yourname>test<no>'
+url='https://api.thousandeyes.com/v6/tests/agent-to-server/new.json'
+payload = {'interval': '300', 'agents': empty_list, 'testName': test_name, 'port': '80', 'server': 'www.thousandeyes.com','alertsEnabled': '0'}
+header = {'content-type': 'application/json', 'authorization': 'Bearer ' + 'token'}
+r = requests.post(url, data=json.dumps(payload), headers=header, verify=False)
+print(r)
