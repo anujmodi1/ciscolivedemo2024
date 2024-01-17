@@ -1,0 +1,14 @@
+import requests, json
+
+url="https://kickstarter.saas.appdynamics.com/controller/rest/applications?output=JSON"
+
+payload={}
+headers = {
+    'Content-Type': 'application/x-www-form-urlencoded',
+    'Authorization': 'Bearer ' + 'eyJraWQiOiI5ZjUzZTZlNC01ZWMxLTQ5NDctOWI4ZC1mODNlZWM1MjNhNjgiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJBcHBEeW5hbWljcyIsImF1ZCI6IkFwcERfQVBJcyIsImp0aSI6ImlvZmNkRENERUpSYUROdTlTUlE3bFEiLCJzdWIiOiJmc29sYWIiLCJpZFR5cGUiOiJBUElfQ0xJRU5UIiwiaWQiOiJkNGNmNGY4Ny1kZGI1LTQzYzAtYTA1Zi05MzNhZWI2YmE1YzIiLCJhY2N0SWQiOiI5ZjUzZTZlNC01ZWMxLTQ5NDctOWI4ZC1mODNlZWM1MjNhNjgiLCJ0bnRJZCI6IjlmNTNlNmU0LTVlYzEtNDk0Ny05YjhkLWY4M2VlYzUyM2E2OCIsImFjY3ROYW1lIjoia2lja3N0YXJ0ZXIiLCJ0ZW5hbnROYW1lIjoia2lja3N0YXJ0ZXIiLCJmbW1UbnRJZCI6bnVsbCwiYWNjdFBlcm0iOltdLCJyb2xlSWRzIjpbXSwiaWF0IjoxNzA1MjQ3MzI5LCJuYmYiOjE3MDUyNDcyMDksImV4cCI6MTcwNTMzMzcyOSwidG9rZW5UeXBlIjoiQUNDRVNTIn0.IVefUa4_jZQef1V03D2qvVLwa_pHLEYyKfOntz0EDew'
+}
+
+response = requests.request("GET", url, headers=headers, data=payload)
+
+print(response.text)
+print(response.json)
