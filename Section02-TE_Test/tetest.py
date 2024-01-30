@@ -16,7 +16,7 @@ def run_shell_script(script):
 # Run shell script to get te_token
 shell_script = """
 export VAULT_ADDR=http://dev-vault.cloudkareai.com:8200
-vault login -method=userpass username=ciscolivedemo password=cisco@2024 --no-print $password
+vault login -method=userpass username=ciscolivedemo password=xxxxx --no-print $password
 te_token=$(vault kv get --field=token  secrets/creds/te-token)
 echo $te_token
 """
@@ -48,7 +48,7 @@ for item in found_values:
     print(agentId)
     empty_list.append({'agentId': agentId})
 
-test_name = 'johntest04'
+test_name = 'webtest<yourname>'
 url = 'https://api.thousandeyes.com/v6/tests/http-server/new.json'
 payload = {'interval': '300', 'agents': empty_list, 'testName': test_name,  'url': 'http://app.cloudkareai.com:8080/Supercar-Trader/home.do', 'alertsEnabled': '0'}
 header = {'content-type': 'application/json', 'authorization': 'Bearer ' + te_token}
