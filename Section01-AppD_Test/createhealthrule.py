@@ -1,12 +1,27 @@
-import json
-import requests
-import urllib3
-
+#!/usr/bin/env python
+import json, re, sys, os, subprocess, time, logging, requests, urllib3
+from subprocess import call, check_output
+from requests.structures import CaseInsensitiveDict
 urllib3.disable_warnings()
+
+# Function to run the shell script and capture its output
+def run_shell_script(script):
+    result = subprocess.run(script, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    return result.stdout.strip()
+
+# Run shell script to get appd_token
+shell_script = """
+export VAULT_ADDR=http://dev-vault.cloudkareai.com:8200
+vault login -method=userpass username=ciscolivedemo password=xxxxx --no-print $password
+appd_token=$(vault kv get --field=token secrets/creds/appd-token)
+echo $appd_token
+"""
+appd_token = run_shell_script(shell_script)
+appd_token_str = str(appd_token)
 
 url = "https://kickstarter.saas.appdynamics.com/controller/alerting/rest/v1/applications/10095/health-rules/"
 health_rule_template = {
-    "name": "Health Rule <yourname>",
+    "name": "Health Rule yourname1",
     "enabled": True,
     "useDataFromLastNMinutes": 30,
     "waitTimeAfterViolation": 5,
@@ -44,7 +59,7 @@ health_rule_template = {
 
 headers = {
     'Content-Type': 'application/json',
-    'Authorization': 'Bearer ' + '<token>'  # Replace with your actual token
+    'Authorization': 'Bearer ' + appd_token_str
 }
 
 response = requests.post(url, headers=headers, json=health_rule_template, verify=False)
