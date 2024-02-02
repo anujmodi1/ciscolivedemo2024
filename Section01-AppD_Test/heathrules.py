@@ -12,7 +12,7 @@ def run_shell_script(script):
 # Run shell script to get appd_token
 shell_script = """
 export VAULT_ADDR=http://dev-vault.cloudkareai.com:8200
-vault login -method=userpass username=ciscolivedemo password=xxxxx --no-print $password
+vault login -method=userpass username=ciscolivedemo password=<password> --no-print $password
 appd_token=$(vault kv get --field=token secrets/creds/appd-token)
 echo $appd_token
 """

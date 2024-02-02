@@ -19,3 +19,5 @@ cd ciscolivedemo2024
 git status
 
 
+For more details refer to the lab guide.
+

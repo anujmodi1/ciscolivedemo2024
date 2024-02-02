@@ -12,7 +12,7 @@ def run_shell_script(script):
 # Fetch token from shell script
 shell_script = """
 export VAULT_ADDR=http://dev-vault.cloudkareai.com:8200
-vault login -method=userpass username=ciscolivedemo password=xxxxx --no-print $password
+vault login -method=userpass username=ciscolivedemo password=<password> --no-print $password
 te_token=$(vault kv get --field=token  secrets/creds/te-token)
 echo $te_token
 """
